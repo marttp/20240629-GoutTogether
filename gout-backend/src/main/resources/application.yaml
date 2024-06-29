@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: gout-backend
+  # threads.virtual.enabled: true
+  threads:
+    virtual:
+      enabled: true
