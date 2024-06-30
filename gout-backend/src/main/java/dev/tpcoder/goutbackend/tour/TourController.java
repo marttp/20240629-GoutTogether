@@ -41,7 +41,7 @@ public class TourController {
     // Get All
     @GetMapping
     public List<Tour> getTours() {
-        logger.debug("Get all tours");
+        logger.info("Get all tours");
         return tourInMemDb.entrySet().stream()
                 .map(e -> e.getValue())
                 .toList();
@@ -50,7 +50,7 @@ public class TourController {
     // Get single
     @GetMapping("/{id}")
     public Tour getTourById(@PathVariable int id) {
-        logger.debug("Get tourId: {}", id);
+        logger.info("Get tourId: {}", id);
         return Optional.ofNullable(tourInMemDb.get(id))
                 .orElseThrow(() -> {
                     logger.error("tourId: {} not found", id);
@@ -67,7 +67,7 @@ public class TourController {
                 tour.maxPeople());
         var id = newTour.id();
         tourInMemDb.put(id, newTour);
-        logger.debug("Create new tour: {}", tourInMemDb.get(id));
+        logger.info("Create new tour: {}", tourInMemDb.get(id));
         return tourInMemDb.get(id);
     }
 
@@ -78,7 +78,7 @@ public class TourController {
                 tour.title(),
                 tour.maxPeople());
         tourInMemDb.put(id, updatedTour);
-        logger.debug("Updated tour: {}", tourInMemDb.get(id));
+        logger.info("Updated tour: {}", tourInMemDb.get(id));
         return tourInMemDb.get(id);
     }
 
@@ -89,7 +89,7 @@ public class TourController {
             return "Failed";
         }
         tourInMemDb.remove(id);
-        logger.debug("Delete tourId: {} success", id);
+        logger.info("Delete tourId: {} success", id);
         return "Success to delete " + id;
     }
 }
