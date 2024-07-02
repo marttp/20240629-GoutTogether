@@ -1,13 +1,13 @@
 version: '3.8'
 services:
-  # postgres:
-  #   image: 'postgres:15.3-alpine'
-  #   environment:
-  #     - 'POSTGRES_DB=gout'
-  #     - 'POSTGRES_USER=goutapp'
-  #     - 'POSTGRES_PASSWORD=secret'
-  #   ports:
-  #     - '5432:5432'
+  postgres:
+    image: 'postgres:16.3-alpine'
+    environment:
+      - 'POSTGRES_DB=gout'
+      - 'POSTGRES_USER=goutapp'
+      - 'POSTGRES_PASSWORD=secret'
+    ports:
+      - '5432:5432'
   lgtm:
     image: grafana/otel-lgtm
     ports:
