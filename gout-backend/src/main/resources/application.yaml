@@ -1,3 +1,6 @@
+server:
+  shutdown: graceful
+
 spring:
   application:
     name: gout-backend
@@ -5,9 +8,25 @@ spring:
   threads:
     virtual:
       enabled: true
+  mvc:
+    problemdetails:
+      enabled: true
+  # Database connection - PostgreSQL
+  datasource:
+    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/gout}
+    username: ${DATABASE_USER:goutapp}
+    password: ${DATABASE_PASSWORD:secret}
+    hikari:
+      maximum-pool-size: ${POOL_SIZE:10}
+  # Database migration
+  flyway:
+    enabled: ${FLYWAY_ENABLED:true}
+    baseline-on-migrate: ${IS_FLYWAY_BASELINE_ON_MIGRATE:true}
+    validate-on-migrate: ${IS_FLYWAY_VALIDATE_ON_MIGRATE:true}
+    locations: classpath:db/migration
 
 management:
   endpoints:
     web:
       exposure:
-        include: "health,info,prometheus"
+        include: "health,info,metrics,prometheus"
