@@ -1,4 +1,4 @@
-package dev.tpcoder.goutbackend.tourcompany;
+package dev.tpcoder.goutbackend.tourcompany.repository;
 
 import org.springframework.data.repository.CrudRepository;
 
