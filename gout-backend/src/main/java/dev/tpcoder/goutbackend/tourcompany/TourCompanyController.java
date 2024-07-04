@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import dev.tpcoder.goutbackend.tourcompany.dto.RegisterTourCompanyDto;
 import dev.tpcoder.goutbackend.tourcompany.model.TourCompany;
-import dev.tpcoder.goutbackend.tourcompany.model.TourCompanyDto;
 
 @RestController
 @RequestMapping("/api/v1/tour-companies")
@@ -25,7 +25,7 @@ public class TourCompanyController {
     }
 
     @PostMapping
-    public ResponseEntity<TourCompany> registerNewTourCompany(@RequestBody @Validated TourCompanyDto body) {
+    public ResponseEntity<TourCompany> registerNewTourCompany(@RequestBody @Validated RegisterTourCompanyDto body) {
         var tourCompany = tourCompanyService.registerTourCompany(body);
         return ResponseEntity.ok(tourCompany);
     }
