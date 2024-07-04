@@ -53,6 +53,7 @@ public class ResponseAdviceHandler extends ResponseEntityExceptionHandler {
                 HttpStatus.INTERNAL_SERVER_ERROR,
                 e.getMessage());
         logger.error(e.getMessage());
+        e.printStackTrace();
         return ResponseEntity.internalServerError()
                 .body(detail);
     }
