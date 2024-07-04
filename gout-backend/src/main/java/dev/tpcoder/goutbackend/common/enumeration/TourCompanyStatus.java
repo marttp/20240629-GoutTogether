@@ -1,4 +1,4 @@
-package dev.tpcoder.goutbackend.tourcompany.model;
+package dev.tpcoder.goutbackend.common.enumeration;
 
 public enum TourCompanyStatus {
     WAITING,
