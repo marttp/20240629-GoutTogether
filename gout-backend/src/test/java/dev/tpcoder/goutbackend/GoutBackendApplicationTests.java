@@ -1,13 +1,12 @@
 package dev.tpcoder.goutbackend;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+import dev.tpcoder.goutbackend.config.AbstractIntegrationTest;
 
-@SpringBootTest
-class GoutBackendApplicationTests {
+class GoutBackendApplicationTests extends AbstractIntegrationTest {
 
 	@Test
 	void contextLoads() {
-	}
 
+	}
 }
