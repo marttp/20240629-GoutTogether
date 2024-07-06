@@ -7,6 +7,6 @@ public record UserCreationDto(
         @NotBlank String lastName,
         String phoneNumber,
         @NotBlank String email,
-        @NotBlank String pasword) {
+        @NotBlank String password) {
 
 }
