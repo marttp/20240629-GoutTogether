@@ -12,6 +12,8 @@ import static org.mockito.Mockito.when;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import dev.tpcoder.goutbackend.common.enumeration.RoleEnum;
+import dev.tpcoder.goutbackend.user.model.Role;
+import dev.tpcoder.goutbackend.user.repository.RoleRepository;
 
 @ExtendWith(MockitoExtension.class)
 class RoleServiceTest {

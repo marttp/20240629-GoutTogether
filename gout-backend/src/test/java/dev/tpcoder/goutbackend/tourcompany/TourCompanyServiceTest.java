@@ -23,10 +23,10 @@ import dev.tpcoder.goutbackend.common.exception.EntityNotFound;
 import dev.tpcoder.goutbackend.tourcompany.dto.RegisterTourCompanyDto;
 import dev.tpcoder.goutbackend.tourcompany.model.TourCompany;
 import dev.tpcoder.goutbackend.tourcompany.model.TourCompanyLogin;
-import dev.tpcoder.goutbackend.tourcompany.model.TourCompanyWallet;
 import dev.tpcoder.goutbackend.tourcompany.repository.TourCompanyLoginRepository;
 import dev.tpcoder.goutbackend.tourcompany.repository.TourCompanyRepository;
-import dev.tpcoder.goutbackend.tourcompany.repository.TourCompanyWalletRepository;
+import dev.tpcoder.goutbackend.wallet.model.TourCompanyWallet;
+import dev.tpcoder.goutbackend.wallet.repository.TourCompanyWalletRepository;
 
 @ExtendWith(MockitoExtension.class)
 class TourCompanyServiceTest {
