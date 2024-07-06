@@ -7,90 +7,64 @@
 	},
 	"item": [
 		{
-			"name": "Register Tour Company",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"name\": \"Mart Tour\",\n    \"username\": \"testtour\",\n    \"password\": \"123456789\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+			"name": "Tour",
+			"item": [
+				{
+					"name": "Register Tour Company",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Mart Tour\",\n    \"username\": \"testtour\",\n    \"password\": \"123456789\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/tour-companies",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"tour-companies"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:8080/api/v1/tour-companies",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"v1",
-						"tour-companies"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Approved Tour Company",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/api/v1/tour-companies/9/approve",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"v1",
-						"tour-companies",
-						"9",
-						"approve"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Create Tour",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"tourCompanyId\": 9,\n    \"title\": \"Camping central BKK\",\n    \"location\": \"Siam Paragon\",\n    \"description\": \"Sleep outdoor\",\n    \"activityDate\": \"2024-07-06T03:00:00.000000Z\",\n    \"numberOfPeople\": 10\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+				{
+					"name": "Approved Tour Company",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/tour-companies/9/approve",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"tour-companies",
+								"9",
+								"approve"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:8080/api/v1/tours",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"v1",
-						"tours"
-					]
-				}
-			},
-			"response": [
 				{
 					"name": "Create Tour",
-					"originalRequest": {
+					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -116,105 +90,96 @@
 							]
 						}
 					},
-					"status": "Created",
-					"code": 201,
-					"_postman_previewlanguage": "json",
-					"header": [
+					"response": [
 						{
-							"key": "Location",
-							"value": "http://localhost/api/v1/tours/8"
-						},
-						{
-							"key": "X-Content-Type-Options",
-							"value": "nosniff"
-						},
-						{
-							"key": "X-XSS-Protection",
-							"value": "0"
-						},
-						{
-							"key": "Cache-Control",
-							"value": "no-cache, no-store, max-age=0, must-revalidate"
-						},
-						{
-							"key": "Pragma",
-							"value": "no-cache"
-						},
-						{
-							"key": "Expires",
-							"value": "0"
-						},
-						{
-							"key": "X-Frame-Options",
-							"value": "DENY"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json"
-						},
-						{
-							"key": "Transfer-Encoding",
-							"value": "chunked"
-						},
-						{
-							"key": "Date",
-							"value": "Thu, 04 Jul 2024 13:22:27 GMT"
-						},
-						{
-							"key": "Keep-Alive",
-							"value": "timeout=60"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"id\": 8,\n    \"tourCompanyId\": {\n        \"id\": 9\n    },\n    \"title\": \"Camping central BKK\",\n    \"description\": \"Sleep outdoor\",\n    \"location\": \"Siam Paragon\",\n    \"numberOfPeople\": 10,\n    \"activityDate\": \"2024-07-06T03:00:00Z\",\n    \"status\": \"PENDING\"\n}"
-				}
-			]
-		},
-		{
-			"name": "Get Tour Paging",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/api/v1/tours?page=0&size=3&sortField=numberOfPeople&sortDirection=asc",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"v1",
-						"tours"
-					],
-					"query": [
-						{
-							"key": "page",
-							"value": "0"
-						},
-						{
-							"key": "size",
-							"value": "3"
-						},
-						{
-							"key": "sortField",
-							"value": "numberOfPeople"
-						},
-						{
-							"key": "sortDirection",
-							"value": "asc"
+							"name": "Create Tour",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"tourCompanyId\": 9,\n    \"title\": \"Camping central BKK\",\n    \"location\": \"Siam Paragon\",\n    \"description\": \"Sleep outdoor\",\n    \"activityDate\": \"2024-07-06T03:00:00.000000Z\",\n    \"numberOfPeople\": 10\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/v1/tours",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"tours"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Location",
+									"value": "http://localhost/api/v1/tours/8"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 04 Jul 2024 13:22:27 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 8,\n    \"tourCompanyId\": {\n        \"id\": 9\n    },\n    \"title\": \"Camping central BKK\",\n    \"description\": \"Sleep outdoor\",\n    \"location\": \"Siam Paragon\",\n    \"numberOfPeople\": 10,\n    \"activityDate\": \"2024-07-06T03:00:00Z\",\n    \"status\": \"PENDING\"\n}"
 						}
 					]
-				}
-			},
-			"response": [
+				},
 				{
 					"name": "Get Tour Paging",
-					"originalRequest": {
+					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -249,81 +214,231 @@
 							]
 						}
 					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
+					"response": [
 						{
-							"key": "X-Content-Type-Options",
-							"value": "nosniff"
-						},
-						{
-							"key": "X-XSS-Protection",
-							"value": "0"
-						},
-						{
-							"key": "Cache-Control",
-							"value": "no-cache, no-store, max-age=0, must-revalidate"
-						},
-						{
-							"key": "Pragma",
-							"value": "no-cache"
-						},
-						{
-							"key": "Expires",
-							"value": "0"
-						},
-						{
-							"key": "X-Frame-Options",
-							"value": "DENY"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json"
-						},
-						{
-							"key": "Transfer-Encoding",
-							"value": "chunked"
-						},
-						{
-							"key": "Date",
-							"value": "Thu, 04 Jul 2024 13:38:20 GMT"
-						},
-						{
-							"key": "Keep-Alive",
-							"value": "timeout=60"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
+							"name": "Get Tour Paging",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/v1/tours?page=0&size=3&sortField=numberOfPeople&sortDirection=asc",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"tours"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "3"
+										},
+										{
+											"key": "sortField",
+											"value": "numberOfPeople"
+										},
+										{
+											"key": "sortDirection",
+											"value": "asc"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 04 Jul 2024 13:38:20 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"totalPages\": 3,\n    \"totalElements\": 8,\n    \"size\": 3,\n    \"content\": [\n        {\n            \"id\": 8,\n            \"tourCompanyId\": {\n                \"id\": 9\n            },\n            \"title\": \"Camping central BKK\",\n            \"description\": \"Sleep outdoor\",\n            \"location\": \"Siam Paragon\",\n            \"numberOfPeople\": 10,\n            \"activityDate\": \"2024-07-06T03:00:00Z\",\n            \"status\": \"PENDING\"\n        },\n        {\n            \"id\": 7,\n            \"tourCompanyId\": {\n                \"id\": 9\n            },\n            \"title\": \"Camping central BKK\",\n            \"description\": \"Sleep outdoor\",\n            \"location\": \"Siam Paragon\",\n            \"numberOfPeople\": 20,\n            \"activityDate\": \"2024-07-06T03:00:00Z\",\n            \"status\": \"PENDING\"\n        },\n        {\n            \"id\": 1,\n            \"tourCompanyId\": {\n                \"id\": 9\n            },\n            \"title\": \"Camping central BKK\",\n            \"description\": \"Sleep outdoor\",\n            \"location\": \"Siam Paragon\",\n            \"numberOfPeople\": 20,\n            \"activityDate\": \"2024-07-06T03:00:00Z\",\n            \"status\": \"PENDING\"\n        }\n    ],\n    \"number\": 0,\n    \"sort\": {\n        \"empty\": false,\n        \"sorted\": true,\n        \"unsorted\": false\n    },\n    \"first\": true,\n    \"last\": false,\n    \"pageable\": {\n        \"pageNumber\": 0,\n        \"pageSize\": 3,\n        \"sort\": {\n            \"empty\": false,\n            \"sorted\": true,\n            \"unsorted\": false\n        },\n        \"offset\": 0,\n        \"paged\": true,\n        \"unpaged\": false\n    },\n    \"numberOfElements\": 3,\n    \"empty\": false\n}"
 						}
-					],
-					"cookie": [],
-					"body": "{\n    \"totalPages\": 3,\n    \"totalElements\": 8,\n    \"size\": 3,\n    \"content\": [\n        {\n            \"id\": 8,\n            \"tourCompanyId\": {\n                \"id\": 9\n            },\n            \"title\": \"Camping central BKK\",\n            \"description\": \"Sleep outdoor\",\n            \"location\": \"Siam Paragon\",\n            \"numberOfPeople\": 10,\n            \"activityDate\": \"2024-07-06T03:00:00Z\",\n            \"status\": \"PENDING\"\n        },\n        {\n            \"id\": 7,\n            \"tourCompanyId\": {\n                \"id\": 9\n            },\n            \"title\": \"Camping central BKK\",\n            \"description\": \"Sleep outdoor\",\n            \"location\": \"Siam Paragon\",\n            \"numberOfPeople\": 20,\n            \"activityDate\": \"2024-07-06T03:00:00Z\",\n            \"status\": \"PENDING\"\n        },\n        {\n            \"id\": 1,\n            \"tourCompanyId\": {\n                \"id\": 9\n            },\n            \"title\": \"Camping central BKK\",\n            \"description\": \"Sleep outdoor\",\n            \"location\": \"Siam Paragon\",\n            \"numberOfPeople\": 20,\n            \"activityDate\": \"2024-07-06T03:00:00Z\",\n            \"status\": \"PENDING\"\n        }\n    ],\n    \"number\": 0,\n    \"sort\": {\n        \"empty\": false,\n        \"sorted\": true,\n        \"unsorted\": false\n    },\n    \"first\": true,\n    \"last\": false,\n    \"pageable\": {\n        \"pageNumber\": 0,\n        \"pageSize\": 3,\n        \"sort\": {\n            \"empty\": false,\n            \"sorted\": true,\n            \"unsorted\": false\n        },\n        \"offset\": 0,\n        \"paged\": true,\n        \"unpaged\": false\n    },\n    \"numberOfElements\": 3,\n    \"empty\": false\n}"
+					]
+				},
+				{
+					"name": "Get Tour by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/tours/7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"tours",
+								"7"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
 		{
-			"name": "Get Tour by id",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/api/v1/tours/7",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"v1",
-						"tours",
-						"7"
-					]
+			"name": "User",
+			"item": [
+				{
+					"name": "Get user by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/users/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete user by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/users/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"Thanaphoom\",\n    \"lastName\": \"Babparn\",\n    \"phoneNumber\": \"0123546987\",\n    \"email\": \"mart@test.com\",\n    \"password\": \"123456789\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update user",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"TestTest\",\n    \"lastName\": \"Babparn\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/users/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"2"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		}
 	]
 }
