@@ -19,7 +19,7 @@ import org.springframework.data.jdbc.core.mapping.AggregateReference;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import dev.tpcoder.goutbackend.common.enumeration.TourCompanyStatus;
-import dev.tpcoder.goutbackend.common.exception.EntityNotFound;
+import dev.tpcoder.goutbackend.common.exception.EntityNotFoundException;
 import dev.tpcoder.goutbackend.tourcompany.dto.RegisterTourCompanyDto;
 import dev.tpcoder.goutbackend.tourcompany.model.TourCompany;
 import dev.tpcoder.goutbackend.tourcompany.model.TourCompanyLogin;
@@ -98,7 +98,7 @@ class TourCompanyServiceTest {
     @Test
     void whenApproveTourButTourCompanyNotFoundThenError() {
         when(tourCompanyRepository.findById(anyInt()))
-                .thenThrow(new EntityNotFound(String.format("Tour Company Id: %s not found", 1)));
-        Assertions.assertThrows(EntityNotFound.class, () -> tourCompanyService.approvedTourCompany(1));
+                .thenThrow(new EntityNotFoundException(String.format("Tour Company Id: %s not found", 1)));
+        Assertions.assertThrows(EntityNotFoundException.class, () -> tourCompanyService.approvedTourCompany(1));
     }
 }

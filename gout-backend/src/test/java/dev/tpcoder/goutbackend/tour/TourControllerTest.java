@@ -31,7 +31,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.dockerjava.api.exception.InternalServerErrorException;
 
 import dev.tpcoder.goutbackend.common.enumeration.TourStatus;
-import dev.tpcoder.goutbackend.common.exception.EntityNotFound;
+import dev.tpcoder.goutbackend.common.exception.EntityNotFoundException;
 import dev.tpcoder.goutbackend.tour.dto.TourDto;
 import dev.tpcoder.goutbackend.tour.model.Tour;
 
@@ -159,7 +159,7 @@ class TourControllerTest {
     @Test
     void whenGetTourByIdButCompanyNotFoundThenReturn404() throws Exception {
         when(tourService.getTourById(anyInt()))
-                .thenThrow(new EntityNotFound());
+                .thenThrow(new EntityNotFoundException());
         mockMvc.perform(get(String.format("/api/v1/tours/%d", 1)))
                 .andExpect(status().isNotFound());
     }

@@ -21,7 +21,7 @@ import org.springframework.web.context.WebApplicationContext;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import dev.tpcoder.goutbackend.common.enumeration.TourCompanyStatus;
-import dev.tpcoder.goutbackend.common.exception.EntityNotFound;
+import dev.tpcoder.goutbackend.common.exception.EntityNotFoundException;
 import dev.tpcoder.goutbackend.tourcompany.dto.RegisterTourCompanyDto;
 import dev.tpcoder.goutbackend.tourcompany.model.TourCompany;
 
@@ -82,7 +82,7 @@ class TourCompanyControllerTest {
     @Test
     void whenApproveTourButCompanyNotFoundThenReturn404() throws Exception {
         when(tourCompanyService.approvedTourCompany(anyInt()))
-                .thenThrow(new EntityNotFound());
+                .thenThrow(new EntityNotFoundException());
         mockMvc.perform(post(String.format("/api/v1/tour-companies/%d/approve", 1)))
                 .andExpect(status().isNotFound());
     }
