@@ -34,8 +34,9 @@ public class AuthServiceImpl implements AuthService {
         AggregateReference<User, Integer> userReference = AggregateReference.to(userId);
         var encryptedPassword = passwordEncoder.encode(password);
         var userCredential = new UserLogin(null, userReference, email, encryptedPassword);
+        var createdCredential = userLoginRepository.save(userCredential);
         logger.info("Created credential for user: {}", userId);
-        return userCredential;
+        return createdCredential;
     }
 
     @Override
