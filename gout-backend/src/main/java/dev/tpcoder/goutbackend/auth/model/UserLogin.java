@@ -1,4 +1,4 @@
-package dev.tpcoder.goutbackend.auth;
+package dev.tpcoder.goutbackend.auth.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.jdbc.core.mapping.AggregateReference;

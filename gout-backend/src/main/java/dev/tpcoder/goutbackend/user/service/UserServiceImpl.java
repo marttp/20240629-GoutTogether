@@ -4,7 +4,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import dev.tpcoder.goutbackend.auth.AuthService;
+
+import dev.tpcoder.goutbackend.auth.service.AuthService;
 import dev.tpcoder.goutbackend.common.enumeration.RoleEnum;
 import dev.tpcoder.goutbackend.common.exception.CredentialExistsException;
 import dev.tpcoder.goutbackend.common.exception.EntityNotFoundException;
