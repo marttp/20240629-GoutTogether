@@ -17,6 +17,9 @@ import org.mockito.Spy;
 import org.springframework.data.jdbc.core.mapping.AggregateReference;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import dev.tpcoder.goutbackend.auth.model.UserLogin;
+import dev.tpcoder.goutbackend.auth.repository.UserLoginRepository;
+import dev.tpcoder.goutbackend.auth.service.AuthServiceImpl;
 import dev.tpcoder.goutbackend.common.exception.EntityNotFoundException;
 import dev.tpcoder.goutbackend.user.model.User;
 

@@ -16,8 +16,8 @@ import org.mockito.Mock;
 import org.mockito.Spy;
 import org.springframework.data.jdbc.core.mapping.AggregateReference;
 
-import dev.tpcoder.goutbackend.auth.AuthService;
-import dev.tpcoder.goutbackend.auth.UserLogin;
+import dev.tpcoder.goutbackend.auth.model.UserLogin;
+import dev.tpcoder.goutbackend.auth.service.AuthService;
 import dev.tpcoder.goutbackend.common.exception.CredentialExistsException;
 import dev.tpcoder.goutbackend.common.exception.EntityNotFoundException;
 import dev.tpcoder.goutbackend.user.dto.UserCreationDto;
