@@ -439,6 +439,68 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"admin@test.com\",\n    \"password\": \"123456789\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test Admin Access",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJnb3V0LWJhY2tlbmQiLCJzdWIiOiJhZG1pbkB0ZXN0LmNvbSIsImlhdCI6MTcyMDM0ODIxOSwicm9sZXMiOiJBRE1JTiJ9.GoBExJ_17Mcj9NhPsMT4oA2xpyDnGWMTNQB4YROBVlPswWR6Ka6lsdudTD9R-vOH5KG9waoKOc0o0hLnRghV8ik_keK90MYPM_5WZzS_bP9XMMcjnlJ8SALNpEeES8kStSth5F9c6A3YcO8l82TfhAhT7sIG2CG52KJY7tw12IGr16PLUrmcWnnTuHFQ-Xi6XyotUFyHn4q7B39vmT96VETOV2sX2tC5Fe2AjP_oy1OdiLN3w9rICuw3nc_lWrKvZDT0E5uooTq2JgOUfr23GR3Tr5VTYi0PA2jWnhv7zf_2vPlsrYcJN4DXDxDq_4HD3qgJqcD6T-MuMhq5FwUL0Hf6nvslbJDMQYZZyovjqvMxBaWjl2Nvbg4axcaogYRbRIWKjSAXSBRvgPTsjz__2SyEOrHUt05PT05Ij0lfvtAkJJ92zazjA_-Vc-SXyi50yBeW4GzySciuqeB9Ep9UJW4yjjHAVjpQcAytpZNZt6SddHPysBO7nQDjEk2sXFBpVZ4ZnZmYmZ23cktgSF76FK7RpV2tUZ8udoMzvYpTa7WbLqsGrvRKQd0x6_Qov6LvYFqO2vuyssG7IcfuY0UQZq2m70kyfAuexOCVxC_O3o9_elz9xR3_Vf-i640-ixPEekNaBSjQa5cVYcqMg6TRRgrO-sragWM3iv8cBoelotU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/admin",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"admin"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
