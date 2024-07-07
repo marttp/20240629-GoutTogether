@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import dev.tpcoder.goutbackend.auth.AuthService;
+import dev.tpcoder.goutbackend.common.enumeration.RoleEnum;
 import dev.tpcoder.goutbackend.common.exception.CredentialExistsException;
 import dev.tpcoder.goutbackend.common.exception.EntityNotFoundException;
 import dev.tpcoder.goutbackend.user.dto.UserCreationDto;
@@ -22,11 +23,17 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final WalletService walletService;
     private final AuthService authService;
+    private final RoleService roleService;
 
-    public UserServiceImpl(AuthService authService, UserRepository userRepository, WalletService walletService) {
+    public UserServiceImpl(
+            AuthService authService,
+            UserRepository userRepository,
+            WalletService walletService,
+            RoleService roleService) {
         this.authService = authService;
         this.userRepository = userRepository;
         this.walletService = walletService;
+        this.roleService = roleService;
     }
 
     @Override
@@ -53,9 +60,11 @@ public class UserServiceImpl implements UserService {
         // 2. Create user
         var prepareUser = new User(null, body.firstName(), body.lastName(), body.phoneNumber());
         var newUser = userRepository.save(prepareUser);
-        // 3. Create credential
+        // 3. Binding role
+        var userRole = roleService.bindingNewUser(newUser.id(), RoleEnum.CONSUMER);
+        // 4. Create credential
         var userCredential = authService.createConsumerCredential(newUser.id(), body.email(), body.password());
-        // 4. Create wallet for user
+        // 5. Create wallet for user
         walletService.createConsumerWallet(newUser.id());
         return new UserInfoDto(newUser.id(), newUser.firstName(), newUser.lastName(), newUser.phoneNumber());
     }
