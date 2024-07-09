@@ -30,3 +30,7 @@ management:
     web:
       exposure:
         include: "health,info,metrics,prometheus"
+
+token:
+  access-token-expired-in-seconds: ${ACCESS_TOKEN_EXP_SEC:3600} # Default: 1 Hour
+  refresh-token-expired-in-seconds: ${REFRESH_TOKEN_EXP_SEC:2592000} # Default: 1 Month
