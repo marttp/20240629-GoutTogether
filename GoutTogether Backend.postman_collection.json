@@ -441,35 +441,103 @@
 			]
 		},
 		{
-			"name": "Login",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"username\": \"user@test.com\",\n    \"password\": \"123456789\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"admin@test.com\",\n    \"password\": \"123456789\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"login"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:8080/api/v1/auth/login",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"v1",
-						"auth",
-						"login"
-					]
+				{
+					"name": "Logout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJnb3V0LWJhY2tlbmQiLCJzdWIiOiI4IiwiZXhwIjoxNzIwNDkyNTcwLCJpYXQiOjE3MjA0OTIyNzAsInJvbGVzIjoiQURNSU4ifQ.JInm9cguuDRHzDVhZnRuDe-Zxmb8VvW_yZDiU7SjyfTzVrNYQIiC6kxqi9CU4vCkJwFtlXeIsBeCkoKR6OX5x_z5nx1sUTdxOrGCO9IFQvs5w0Idq5eZsx9vWuAbzl1Bg0Tvl6ZbDvfq_m_ZGET_hsCTdcouHaIfYLzpiL8WsxpXdPZWEDEmWToooyxT25TB8HYEqpGZPsH7NI6vgjK7u7fLgZmxP1qBBeJenEgC_TcmDRv-wPjyn3vqDyMhnlL7UC2WH3gbwE-zvakQhgSl_KH8DmolpQ42A1m36N1UYAbsCFNMo15q17q5_ZPefi0tbr2aCKsgI2PKtK93YSh8XqSDkJeX1odk-o69Tezvz4CKD2BjxpORRm9mQmqV7t54Ja9lykR653TcBE9TdpIaRKRr45yPPQgyoSn0XKGW0SLU2Ur6JFyG4A9WmTmc7SphJ_KyOnDxiuw_GfkwJUaTugJDcD291niIF551Moweue8zdVg2EfrrLFP-jrl36pjzD74TOltqoZaGNqvc745vNwc53XdGBUMlN9qKvbpM92x18oZzR3vnR0ul7reHDc3rni-GR4HF0bcRoX1CywNVmV_PDSv7qQhM9eN1MNc02HZfxuvKf7JTTq4jHO7HgUxQW0VF7LKcQ3-1yl6xq93w69BsFgfVzAtZb_E-4Jf7l1M",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/auth/logout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh Token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"usage\": \"ADMIN\",\n    \"resourceId\": 8,\n    \"refreshToken\": \"06e530c0-95e3-4d59-bd28-28f58409b3be\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/auth/refresh",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"refresh"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
 			"name": "Test Admin Access",
@@ -497,38 +565,6 @@
 						"api",
 						"v1",
 						"admin"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Logout",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJnb3V0LWJhY2tlbmQiLCJzdWIiOiI4IiwiZXhwIjoxNzIwNDkyNTcwLCJpYXQiOjE3MjA0OTIyNzAsInJvbGVzIjoiQURNSU4ifQ.JInm9cguuDRHzDVhZnRuDe-Zxmb8VvW_yZDiU7SjyfTzVrNYQIiC6kxqi9CU4vCkJwFtlXeIsBeCkoKR6OX5x_z5nx1sUTdxOrGCO9IFQvs5w0Idq5eZsx9vWuAbzl1Bg0Tvl6ZbDvfq_m_ZGET_hsCTdcouHaIfYLzpiL8WsxpXdPZWEDEmWToooyxT25TB8HYEqpGZPsH7NI6vgjK7u7fLgZmxP1qBBeJenEgC_TcmDRv-wPjyn3vqDyMhnlL7UC2WH3gbwE-zvakQhgSl_KH8DmolpQ42A1m36N1UYAbsCFNMo15q17q5_ZPefi0tbr2aCKsgI2PKtK93YSh8XqSDkJeX1odk-o69Tezvz4CKD2BjxpORRm9mQmqV7t54Ja9lykR653TcBE9TdpIaRKRr45yPPQgyoSn0XKGW0SLU2Ur6JFyG4A9WmTmc7SphJ_KyOnDxiuw_GfkwJUaTugJDcD291niIF551Moweue8zdVg2EfrrLFP-jrl36pjzD74TOltqoZaGNqvc745vNwc53XdGBUMlN9qKvbpM92x18oZzR3vnR0ul7reHDc3rni-GR4HF0bcRoX1CywNVmV_PDSv7qQhM9eN1MNc02HZfxuvKf7JTTq4jHO7HgUxQW0VF7LKcQ3-1yl6xq93w69BsFgfVzAtZb_E-4Jf7l1M",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/api/v1/auth/logout",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"v1",
-						"auth",
-						"logout"
 					]
 				}
 			},
