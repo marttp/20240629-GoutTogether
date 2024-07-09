@@ -5,8 +5,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import dev.tpcoder.goutbackend.auth.dto.LoginRequestDto;
 import dev.tpcoder.goutbackend.auth.dto.LoginResponseDto;
+import dev.tpcoder.goutbackend.auth.dto.LogoutDto;
 import dev.tpcoder.goutbackend.auth.service.AuthService;
 
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,8 +26,16 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public LoginResponseDto login(@RequestBody @Validated LoginRequestDto body) {
-        return authService.login(body);
+    public ResponseEntity<LoginResponseDto> login(@RequestBody @Validated LoginRequestDto body) {
+        return ResponseEntity.ok(authService.login(body));
+    }
+
+    @PostMapping("/logout")
+    public ResponseEntity<?> logout(Authentication authentication) {
+        var jwt = (Jwt) authentication.getPrincipal();
+        var logoutDto = new LogoutDto(jwt.getClaimAsString("sub"), jwt.getClaimAsString("roles"));
+        authService.logout(logoutDto);
+        return ResponseEntity.noContent().build();
     }
     
 }
