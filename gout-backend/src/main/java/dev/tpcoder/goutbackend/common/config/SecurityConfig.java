@@ -57,6 +57,9 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(authorize -> authorize
+                        .requestMatchers("/api/v1/auth/login").permitAll()
+                        .requestMatchers("/api/v1/auth/refresh").permitAll()
+                        .requestMatchers("/api/v1/auth/logout").hasAnyRole(RoleEnum.ADMIN.name(), RoleEnum.CONSUMER.name())
                         .requestMatchers("/api/v1/admin/**").hasRole(RoleEnum.ADMIN.name())
                         .anyRequest().permitAll())
                 .csrf(AbstractHttpConfigurer::disable)
