@@ -1,6 +1,8 @@
 package dev.tpcoder.goutbackend.auth.service;
 
 import java.time.Instant;
+import java.util.Collection;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -12,47 +14,70 @@ import org.springframework.security.oauth2.jwt.JwtEncoderParameters;
 import org.springframework.stereotype.Service;
 
 import dev.tpcoder.goutbackend.auth.dto.AuthenticatedUser;
+import dev.tpcoder.goutbackend.auth.model.RefreshToken;
+import dev.tpcoder.goutbackend.auth.model.UserLogin;
 
 @Service
 public class TokenService {
 
     private static final String ISSUER = "gout-backend";
     private static final String ROLES_CLAIM = "roles";
+    private static final int TIME_FOR_ROTATE_SECONDS = 120;
 
     private final JwtEncoder jwtEncoder;
     private final long accessTokenExpiredInSeconds;
     private final long refreshTokenExpiredInSeconds;
+    private final CustomUserDetailsService customUserDetailsService;
 
     public TokenService(
             JwtEncoder jwtEncoder,
-            @Value("${token.access-token-expired-in-seconds}") long accessTokenExpiredInSeconds,
-            @Value("${token.refresh-token-expired-in-seconds}") long refreshTokenExpiredInSeconds) {
+            @Value(value = "${token.access-token-expired-in-seconds}") long accessTokenExpiredInSeconds,
+            @Value(value = "${token.refresh-token-expired-in-seconds}") long refreshTokenExpiredInSeconds,
+            CustomUserDetailsService customUserDetailsService) {
         this.accessTokenExpiredInSeconds = accessTokenExpiredInSeconds;
         this.jwtEncoder = jwtEncoder;
         this.refreshTokenExpiredInSeconds = refreshTokenExpiredInSeconds;
+        this.customUserDetailsService = customUserDetailsService;
     }
 
     public String issueAccessToken(Authentication auth, Instant issueDate) {
         return generateToken(auth, issueDate, accessTokenExpiredInSeconds);
     }
 
-    public String issueRefreshToken(Authentication auth, Instant issueDate) {
-        return generateToken(auth, issueDate, refreshTokenExpiredInSeconds);
+    public String issueAccessToken(UserLogin userLogin, Instant issueDate) {
+        AuthenticatedUser userDetails = (AuthenticatedUser) customUserDetailsService
+                .loadUserByUsername(userLogin.email());
+        return generateToken(userDetails, issueDate, accessTokenExpiredInSeconds);
+    }
+
+    public String issueRefreshToken() {
+        return UUID.randomUUID().toString();
+    }
+
+    public String generateToken(AuthenticatedUser auth, Instant issueDate, long expiredInSeconds) {
+        return generateToken(auth.userId(), auth.getAuthorities(), issueDate, expiredInSeconds);
     }
 
     public String generateToken(Authentication auth, Instant issueDate, long expiredInSeconds) {
-        Instant expire = issueDate.plusSeconds(expiredInSeconds);
+        var authenticatedUser = (AuthenticatedUser) auth.getPrincipal();
+        return generateToken(authenticatedUser.userId(), auth.getAuthorities(), issueDate, expiredInSeconds);
+    }
 
-        String scope = auth.getAuthorities().stream()
+    private String generateToken(
+            Integer userId,
+            Collection<? extends GrantedAuthority> authorities,
+            Instant issueDate,
+            long expiredInSeconds) {
+
+        Instant expire = issueDate.plusSeconds(expiredInSeconds);
+        String scope = authorities.stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.joining(" "));
-
-        var authenticatedUser = (AuthenticatedUser) auth.getPrincipal();
 
         JwtClaimsSet claims = JwtClaimsSet.builder()
                 .issuer(ISSUER)
                 .issuedAt(issueDate)
-                .subject(String.valueOf(authenticatedUser.userId()))
+                .subject(String.valueOf(userId))
                 .claim(ROLES_CLAIM, scope)
                 .expiresAt(expire)
                 .build();
@@ -62,5 +87,23 @@ public class TokenService {
 
     public String encodeClaimToJwt(JwtClaimsSet claims) {
         return jwtEncoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();
+    }
+
+    public boolean isRefreshTokenExpired(RefreshToken refreshToken) {
+        var issuedDate = refreshToken.issuedDate();
+        var expireDate = issuedDate.plusSeconds(refreshTokenExpiredInSeconds);
+        var now = Instant.now();
+        return now.isAfter(expireDate);
+    }
+
+    public String rotateRefreshTokenIfNeed(RefreshToken refreshTokenEntity) {
+        var issuedDate = refreshTokenEntity.issuedDate();
+        var expireDate = issuedDate.plusSeconds(refreshTokenExpiredInSeconds);
+        var thresholdToRotateDate = expireDate.minusSeconds(TIME_FOR_ROTATE_SECONDS);
+        var now = Instant.now();
+        if (now.isAfter(thresholdToRotateDate)) {
+            return issueRefreshToken();
+        }
+        return refreshTokenEntity.token();
     }
 }
