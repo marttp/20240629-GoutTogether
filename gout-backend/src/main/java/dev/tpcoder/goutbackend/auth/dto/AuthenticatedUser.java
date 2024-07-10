@@ -19,6 +19,7 @@ public record AuthenticatedUser(
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return switch(this.role) {
             case RoleEnum.ADMIN -> List.of(new SimpleGrantedAuthority(RoleEnum.ADMIN.name()));
+            case RoleEnum.COMPANY -> List.of(new SimpleGrantedAuthority(RoleEnum.COMPANY.name()));
             default -> List.of(new SimpleGrantedAuthority(RoleEnum.CONSUMER.name()));
         };
     }
