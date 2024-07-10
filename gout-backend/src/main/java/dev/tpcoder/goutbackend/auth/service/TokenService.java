@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import dev.tpcoder.goutbackend.auth.dto.AuthenticatedUser;
 import dev.tpcoder.goutbackend.auth.model.RefreshToken;
 import dev.tpcoder.goutbackend.auth.model.UserLogin;
+import dev.tpcoder.goutbackend.tourcompany.model.TourCompanyLogin;
 
 @Service
 public class TokenService {
@@ -47,6 +48,12 @@ public class TokenService {
     public String issueAccessToken(UserLogin userLogin, Instant issueDate) {
         AuthenticatedUser userDetails = (AuthenticatedUser) customUserDetailsService
                 .loadUserByUsername(userLogin.email());
+        return generateToken(userDetails, issueDate, accessTokenExpiredInSeconds);
+    }
+
+    public String issueAccessToken(TourCompanyLogin tourCompanyLogin, Instant issueDate) {
+        AuthenticatedUser userDetails = (AuthenticatedUser) customUserDetailsService
+                .loadUserByUsername(tourCompanyLogin.username());
         return generateToken(userDetails, issueDate, accessTokenExpiredInSeconds);
     }
 
