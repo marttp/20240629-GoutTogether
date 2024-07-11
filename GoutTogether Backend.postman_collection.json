@@ -540,6 +540,42 @@
 			]
 		},
 		{
+			"name": "Me",
+			"item": [
+				{
+					"name": "Get my detail",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJnb3V0LWJhY2tlbmQiLCJzdWIiOiI0IiwiZXhwIjoxNzIwNjY0MDMxLCJpYXQiOjE3MjA2NjM3MzEsInJvbGVzIjoiQ09OU1VNRVIifQ.IyJSySJ21KRpmkHHrRjQXWiRA_j1ZBPBHbvMQnZFePXAFjUdyk-BA0Z0oQLdbDRr349V218fz-1FBf7i9FepyzAXRRazydc1owSfmDLf59aQk7_ig2l79kP5QzY5AEAGLjIEwfLe4BuzbgafKNIfZiJH-H7BrSI_OPN0CWrlWR8zEhqk_0Rd6_B-d3R8lbRNZFv-XyoyLWAYWsXVSwr6iwFyNG4tuukveNu47ia84A1Nh9UViwaOBx9yk4YNEx20wZnklbe6ZbOQ3B3pJkaZQ6JervhHv7CId0UjWtRIMifKBZCYBGcCCwaxb7yzhuurXO6CHa5Ing_CPg4s-9xcNIx_QqLitcumUmGCrlMD3LbwJ-KbkPe9389QB_InN2rp7UWxPQyD0jodnOGlVtFQVTSf1XC4_h9qiz0DcGLf6-qJx7ZSovELb6UDgazlv5-SYUjqmEc0_zTxxfKzGfy7wlc7Qz9sQzl-AI5yU7f8Z1pKchyv2pNU1VzpltTCcg7tfxAjScGT-SSjyEhAlq0zMVzRA0GVamvVXpNxSgSAzvHIeOqD4GwheEwDzLyxL8gWl-Ztul13NGFiUCCOID3th7C-9LI1t86GQMt-sglbyE7DHY0HueicJg1IybSVJ7hJpR94mzGMAsxJhLeAl4cO75Wr2_yv3lmVkFs8QGTxeBg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/me",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"me"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Test Admin Access",
 			"request": {
 				"auth": {
