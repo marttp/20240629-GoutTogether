@@ -14,6 +14,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -55,13 +56,33 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        // Alternative solution, you can set via @PreAuthorize("hasRole('?')")
+        // or @PreAuthorize("hasRole('?') and hasRole('?')") if many roles need to
+        // handle
         http
                 .authorizeHttpRequests(authorize -> authorize
+                        // Actuator
+                        .requestMatchers("/actuator/health").permitAll()
+                        .requestMatchers("/actuator/metrics").permitAll()
+                        // Auth
                         .requestMatchers("/api/v1/auth/login").permitAll()
                         .requestMatchers("/api/v1/auth/refresh").permitAll()
-                        .requestMatchers("/api/v1/auth/logout").hasAnyRole(RoleEnum.ADMIN.name(), RoleEnum.CONSUMER.name())
+                        // Tour Company
+                        .requestMatchers(HttpMethod.POST, "/api/v1/tour-companies").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/v1/tour-companies/{id:\\d+}/approve")
+                        .hasRole(RoleEnum.ADMIN.name())
+                        // Tour
+                        .requestMatchers(HttpMethod.GET, "/api/v1/tours").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/v1/tours/{id:\\d+}").permitAll()
+                        .requestMatchers("/api/v1/tours").hasRole(RoleEnum.COMPANY.name())
+                        // User
+                        .requestMatchers(HttpMethod.POST, "/api/v1/users").permitAll()
+                        .requestMatchers("/api/v1/users/**").hasRole(RoleEnum.ADMIN.name())
+                        // User self-managed
+                        .requestMatchers("/api/v1/me").hasRole(RoleEnum.CONSUMER.name())
+                        // Administrator purpose
                         .requestMatchers("/api/v1/admin/**").hasRole(RoleEnum.ADMIN.name())
-                        .anyRequest().permitAll())
+                        .anyRequest().authenticated())
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(AbstractHttpConfigurer::disable)
                 .httpBasic(AbstractHttpConfigurer::disable)

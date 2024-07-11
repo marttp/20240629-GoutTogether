@@ -91,6 +91,8 @@ public class UserServiceImpl implements UserService {
         logger.info("Delete credential for userId: {}", user.id());
         walletService.deleteConsumerWalletByUserId(user.id());
         logger.info("Delete wallet for userId: {}", user.id());
+        roleService.deleteRoleByUserId(user.id());
+        logger.info("Delete role for userId: {}", user.id());
         userRepository.delete(user);
         logger.info("Delete userId: {}", user.id());
         return true;
