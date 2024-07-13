@@ -576,6 +576,90 @@
 			]
 		},
 		{
+			"name": "Wallet",
+			"item": [
+				{
+					"name": "Get Own Wallet Balance",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJnb3V0LWJhY2tlbmQiLCJzdWIiOiI0IiwiZXhwIjoxNzIwODY5NjgwLCJpYXQiOjE3MjA4NjkzODAsInJvbGVzIjoiQ09OU1VNRVIifQ.RrqetXGtE86WQTUaGId0UKynVedFtzjsc2XcJx8Qug4iKcMsjQkSb0zDPRvzXmGSIkUVeiiTNsdPJFVRi55_bwzORJ08H9NGlmPEeycEeEazZsGrJMBU7g63Y6W3ZG2nzZOdHJpgGfmWGZS5a7hSGDE3e4Dxy-wxQkpWJ8sqAAmwpmKbkfU_zVhvrB7ziT5kWEWFI9BtslbmX07GsCWF7tGxCMo3qe_JhoE3mpLCc_4L9Qa6HYnGo44Uoj4HdDVkUdkCCRGuFSLSK7tBT3SlwhGUFkuSCYMiMr8rsYyCXkyWkjqoSQ-7BjVp0AjRcKczco2d8CFkUkOUWu34zgFwU5g8cYSvwWHMYddjWrKoF4N5-ENtFRSJV8vWpkpGNo9qiAL3EPsr74yO6LNBU97sdQmaT8hrgNWAPnIBzshCtKsc2mD7wPIS71FQf0DYbspFsq4Mh837vClRG-zgJkQ2M2UC-p7khXPXM6WncoZMZIpCqOECjlshXeQRjnH5YaDRBiXMvATuK3-wsakt7rxsYSD3jbhrAV01LRtMz9R_BegojzhKSnyt2cpVoKD-CJ_hPwNecGh_z_Jrkx3cJk3zj4hMPFZNQ5oe2f63GpAfvWPMJGRaLGjEKSG1MSA6hrXTb9CRD6G_PEDHtjxnSC3vx2C06eYAEgReUiaytoB3uqs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/wallet/me",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"wallet",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Topup",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJnb3V0LWJhY2tlbmQiLCJzdWIiOiI0IiwiZXhwIjoxNzIwODcwMzQ2LCJpYXQiOjE3MjA4NzAwNDYsInJvbGVzIjoiQ09OU1VNRVIifQ.ThJBdoiDMPAhwFgucg8vT1ZJo0j2bjjxljKzuO6B0d8-R-5GyasS0TKD8Jd8XqV9K5ULuKnMaCmCAlx49_nJyh4EDRFZFn4Bja8epzCgQRZEPvBIh4Wc11cXxI4t1Y03gTEJo8u00MEecDDz7lK0H0-7peNdHndbYdoE0gD36CZEeGy6PlJllvDXWDaxAE2jXmC9lOpJsU7o7n7l4sVlyx0SvrxKFGDdF3wJX3_zj9XpgyUkDT7lm9sE3ECf7_WAMhtJN2QIs4KmVBhb99RmB8q4OeqpQCSg3QuFkV4BCp93q-FDmMLNYq6ZC7usAkciYcQ9Vfr_BUkR_T6o2PXjNAinVVkxYyoBQvjVoWpQyRzbFzXHrd1kz-vzixL-6KaaI3v8LBgx5XR2XLCEZk7uunTOUaWZ-8nxgS_8lM22R0LU4CUYmha4SozEzPoGLTU-KySVBYAzo-zSzxd6PWTr0Op4ys3amwh9963BsGFyr2UyqRilZOWEE2E7N_J-jsIBgzj6yxXE1yHGDZ1gli4Li_4gh41JxiuWVRia4xpby4g7QIgQZ4N3Lx7cyuxjpaZ2dTCH6VaxmFT3dfDRCZCAKanW2AunNC8M7q5gQc07YHLKwnq6Jw4ukN3y0T3t75fPumdbWLh4GSf4ySUbdXSXEHpgBSUXIsh47iNaDEGLIBE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "idempotent-key",
+								"value": "8ee83f97-0f15-49be-ba1e-393fe158ae58",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"amount\": \"800.00\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/wallet/topup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"wallet",
+								"topup"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Test Admin Access",
 			"request": {
 				"auth": {
