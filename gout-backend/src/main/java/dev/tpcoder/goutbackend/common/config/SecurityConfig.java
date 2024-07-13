@@ -10,10 +10,9 @@ import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.ProviderManager;
@@ -48,10 +47,14 @@ import dev.tpcoder.goutbackend.common.model.RSAKeyProperties;
 @EnableWebSecurity
 public class SecurityConfig {
 
-    private final ResourceLoader resourceLoader;
+    private final String privateKeyBase64;
+    private final String publicKeyBase64;
 
-    public SecurityConfig(ResourceLoader resourceLoader) {
-        this.resourceLoader = resourceLoader;
+    public SecurityConfig(
+            @Value("${oauth.private-key}") String privateKeyBase64,
+            @Value("${oauth.public-key}") String publicKeyBase64) {
+        this.privateKeyBase64 = privateKeyBase64;
+        this.publicKeyBase64 = publicKeyBase64;
     }
 
     @Bean
@@ -135,10 +138,10 @@ public class SecurityConfig {
 
     @Bean
     public RSAKeyProperties rsaInstance() throws NoSuchAlgorithmException, InvalidKeySpecException, IOException {
-        Resource privateKeyPkcs8 = resourceLoader.getResource("classPath:private_key_pkcs8.pem");
-        String privateKeyContent = new String(privateKeyPkcs8.getContentAsByteArray());
-        Resource publicKey = resourceLoader.getResource("classPath:public_key.pem");
-        String publicKeyContent = new String(publicKey.getContentAsByteArray());
+        // Resource privateKeyPkcs8 = resourceLoader.getResource("classPath:private_key_pkcs8.pem");
+        String privateKeyContent = new String(Base64.getDecoder().decode(privateKeyBase64).clone());
+        // Resource publicKey = resourceLoader.getResource("classPath:public_key.pem");
+        String publicKeyContent = new String(Base64.getDecoder().decode(publicKeyBase64).clone());
 
         privateKeyContent = privateKeyContent.replaceAll("\\n", "")
                 .replace("-----BEGIN PRIVATE KEY-----", "")
