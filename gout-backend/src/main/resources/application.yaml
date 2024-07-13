@@ -34,3 +34,7 @@ management:
 token:
   access-token-expired-in-seconds: ${ACCESS_TOKEN_EXP_SEC:3600} # Default: 1 Hour
   refresh-token-expired-in-seconds: ${REFRESH_TOKEN_EXP_SEC:2592000} # Default: 1 Month
+
+oauth:
+ private-key: ${OAUTH_PRIVATE_KEY_BASE64:DUMMY}
+ public-key: ${OAUTH_PUBLIC_KEY_BASE64:DUMMY}
