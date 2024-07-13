@@ -2,6 +2,8 @@ package dev.tpcoder.goutbackend.user.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -96,5 +98,10 @@ public class UserServiceImpl implements UserService {
         userRepository.delete(user);
         logger.info("Delete userId: {}", user.id());
         return true;
+    }
+
+    @Override
+    public Page<User> getUsersByFirstName(String keyword, Pageable pageable) {
+        return userRepository.findByFirstNameContaining(keyword, pageable);
     }
 }
