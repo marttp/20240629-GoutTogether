@@ -38,3 +38,8 @@ token:
 oauth:
  private-key: ${OAUTH_PRIVATE_KEY_BASE64:DUMMY}
  public-key: ${OAUTH_PUBLIC_KEY_BASE64:DUMMY}
+
+org.jobrunr:
+  background-job-server.enabled: ${JOBRUNR_BACKGROUND_JOB_ENABLED:true}
+  dashboard.enabled: ${JOBRUNR_DASHBOARD_ENABLED:true}
+  background-job-server.thread-type: VirtualThreads
