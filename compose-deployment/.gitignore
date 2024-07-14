@@ -1,0 +1,4 @@
+pgdata/
+db.env
+gout.env
+opentelemetry-javaagent.jar

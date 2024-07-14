@@ -1,0 +1,24 @@
+services:
+  gout-be:
+    image: 'marttp/goutbe:0.0.1-SNAPSHOT'
+    env_file:
+      - gout.env
+    ports:
+      - '8080:8080'
+      - '8000:8000'
+    volumes:
+      - ./opentelemetry-javaagent.jar:/agent/opentelemetry-javaagent.jar
+  postgres:
+    image: 'postgres:16.3-alpine'
+    env_file:
+      - db.env
+    volumes: # Map for persistence purpose
+      - ./pgdata:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+  lgtm:
+    image: grafana/otel-lgtm
+    ports:
+      - '4317:4317'
+      - '4318:4318'
+      - '3000:3000'
