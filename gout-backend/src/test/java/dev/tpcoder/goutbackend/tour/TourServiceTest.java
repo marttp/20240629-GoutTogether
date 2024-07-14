@@ -31,6 +31,7 @@ import dev.tpcoder.goutbackend.tour.model.Tour;
 import dev.tpcoder.goutbackend.tour.model.TourCount;
 import dev.tpcoder.goutbackend.tour.repository.TourCountRepository;
 import dev.tpcoder.goutbackend.tour.repository.TourRepository;
+import dev.tpcoder.goutbackend.tour.service.TourServiceImpl;
 import dev.tpcoder.goutbackend.tourcompany.model.TourCompany;
 import dev.tpcoder.goutbackend.tourcompany.repository.TourCompanyRepository;
 

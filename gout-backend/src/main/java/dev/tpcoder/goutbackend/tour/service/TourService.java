@@ -1,4 +1,4 @@
-package dev.tpcoder.goutbackend.tour;
+package dev.tpcoder.goutbackend.tour.service;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
