@@ -43,3 +43,6 @@ org.jobrunr:
   background-job-server.enabled: ${JOBRUNR_BACKGROUND_JOB_ENABLED:true}
   dashboard.enabled: ${JOBRUNR_DASHBOARD_ENABLED:true}
   background-job-server.thread-type: VirtualThreads
+
+booking:
+  tour-price: ${BOOK_TOUR_PRICE:100}

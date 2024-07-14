@@ -1,4 +1,4 @@
-package dev.tpcoder.goutbackend.tour;
+package dev.tpcoder.goutbackend.tour.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

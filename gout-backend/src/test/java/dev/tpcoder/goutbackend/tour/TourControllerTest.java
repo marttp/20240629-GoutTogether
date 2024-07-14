@@ -34,6 +34,7 @@ import dev.tpcoder.goutbackend.common.enumeration.TourStatus;
 import dev.tpcoder.goutbackend.common.exception.EntityNotFoundException;
 import dev.tpcoder.goutbackend.tour.dto.TourDto;
 import dev.tpcoder.goutbackend.tour.model.Tour;
+import dev.tpcoder.goutbackend.tour.service.TourService;
 
 @WebMvcTest(TourController.class)
 class TourControllerTest {

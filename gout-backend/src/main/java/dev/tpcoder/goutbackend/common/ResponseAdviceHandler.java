@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import dev.tpcoder.goutbackend.common.exception.BookingExistsException;
 import dev.tpcoder.goutbackend.common.exception.EntityNotFoundException;
 import dev.tpcoder.goutbackend.common.exception.RefreshTokenExpiredException;
+import dev.tpcoder.goutbackend.common.exception.UserIdMismatchException;
 
 @RestControllerAdvice
 public class ResponseAdviceHandler extends ResponseEntityExceptionHandler {
@@ -35,6 +37,24 @@ public class ResponseAdviceHandler extends ResponseEntityExceptionHandler {
             properties.put(oe.getField(), oe.getDefaultMessage());
         }
         detail.setProperty("arguments", properties);
+        return ResponseEntity.badRequest().body(detail);
+    }
+
+    @ExceptionHandler(UserIdMismatchException.class)
+    protected ResponseEntity<Object> userIdMismatchExceptionHandling(UserIdMismatchException e) {
+        ProblemDetail detail = ProblemDetail.forStatusAndDetail(
+                HttpStatus.BAD_REQUEST,
+                e.getMessage());
+        logger.info("UserId mismatch request: {}", detail);
+        return ResponseEntity.badRequest().body(detail);
+    }
+
+    @ExceptionHandler(BookingExistsException.class)
+    protected ResponseEntity<Object> bookingExistsExceptionHandling(BookingExistsException e) {
+        ProblemDetail detail = ProblemDetail.forStatusAndDetail(
+                HttpStatus.BAD_REQUEST,
+                e.getMessage());
+        logger.info("Booking exists: {}", detail);
         return ResponseEntity.badRequest().body(detail);
     }
 

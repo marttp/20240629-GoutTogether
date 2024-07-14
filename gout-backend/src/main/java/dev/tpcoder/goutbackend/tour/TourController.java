@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import dev.tpcoder.goutbackend.tour.dto.TourDto;
 import dev.tpcoder.goutbackend.tour.model.Tour;
+import dev.tpcoder.goutbackend.tour.service.TourService;
 
 @RestController
 @RequestMapping("/api/v1/tours")

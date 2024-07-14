@@ -660,6 +660,178 @@
 			]
 		},
 		{
+			"name": "Booking",
+			"item": [
+				{
+					"name": "Book tour",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJnb3V0LWJhY2tlbmQiLCJzdWIiOiI0IiwiZXhwIjoxNzIwOTMwNTM2LCJpYXQiOjE3MjA5MzAyMzYsInJvbGVzIjoiQ09OU1VNRVIifQ.YPNduxfl1Wg9o1VDjCrs4S70FKAoIUcrt3LKraMkjEsuw1CV1bxKoXlzRArVhaRYt6PMFBuOyr5CUduVhUjvBYLOM8kreBBh-ekpLb2YSN4V4DmFHzxfiAyvCZSY9GC2E6QVLu2io83pElSdkeSRPmTP2-b4hWE5PmdAd_vuB03wxu31PgEc3wpUjA3rQcO4cuDVWvMtFTARYmJ_v3BKilVPuWf5rP8PXvz4sFyhH5kqGiev9GE4E0xmWOnCMOiM1v575AbogPvsURclxYwG_gKUSjXuWna-fuINrRVQnvsmbIZwtnIiGXDMQKnflsTQmDXvYXn4BdwgHlKb4eZ6GWqOV9XNfx0TZBV022DdbXqueT_rnoFmSPMgdSq_C8FucajL6MI7aLEESWUiTwsaxiDA-vvBelH_QEv0NE7kmERY_HCDBnzyhpYAGRzcZec6Zyilj-7vQvnW4N1Qg5pSaXi9auk3bHxmdxh1pwQEhF3VZyEchkXBuTyES-eKXaZs19KUJRGfws-w8QT3Eqf30DNNnVksko_NHTKa3lAvCkTbO_R1wKuPzePRH7y38WiI2lQ87PvV23bWggj86BMfm6ohGptiGJE0jDZQLVnR0GMJ2T20NttAhhFfXp8tO3_V-zOxY4ek9T9FYg0zinKwszX79s5Yq-BakQrXBFM79mM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "idempotent-key",
+								"value": "43be1a8c-6206-4cd4-9f0e-96942f359489",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userId\": 4,\n    \"tourId\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/booking",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"booking"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cancel booking",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJnb3V0LWJhY2tlbmQiLCJzdWIiOiI0IiwiZXhwIjoxNzIwOTMwNTM2LCJpYXQiOjE3MjA5MzAyMzYsInJvbGVzIjoiQ09OU1VNRVIifQ.YPNduxfl1Wg9o1VDjCrs4S70FKAoIUcrt3LKraMkjEsuw1CV1bxKoXlzRArVhaRYt6PMFBuOyr5CUduVhUjvBYLOM8kreBBh-ekpLb2YSN4V4DmFHzxfiAyvCZSY9GC2E6QVLu2io83pElSdkeSRPmTP2-b4hWE5PmdAd_vuB03wxu31PgEc3wpUjA3rQcO4cuDVWvMtFTARYmJ_v3BKilVPuWf5rP8PXvz4sFyhH5kqGiev9GE4E0xmWOnCMOiM1v575AbogPvsURclxYwG_gKUSjXuWna-fuINrRVQnvsmbIZwtnIiGXDMQKnflsTQmDXvYXn4BdwgHlKb4eZ6GWqOV9XNfx0TZBV022DdbXqueT_rnoFmSPMgdSq_C8FucajL6MI7aLEESWUiTwsaxiDA-vvBelH_QEv0NE7kmERY_HCDBnzyhpYAGRzcZec6Zyilj-7vQvnW4N1Qg5pSaXi9auk3bHxmdxh1pwQEhF3VZyEchkXBuTyES-eKXaZs19KUJRGfws-w8QT3Eqf30DNNnVksko_NHTKa3lAvCkTbO_R1wKuPzePRH7y38WiI2lQ87PvV23bWggj86BMfm6ohGptiGJE0jDZQLVnR0GMJ2T20NttAhhFfXp8tO3_V-zOxY4ek9T9FYg0zinKwszX79s5Yq-BakQrXBFM79mM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "idempotent-key",
+								"value": "dbc21258-12b5-43b0-883b-a3e781c5d970",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"bookingId\": 1,\n    \"userId\": 4,\n    \"tourId\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/booking/cancel",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"booking",
+								"cancel"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Payment",
+			"item": [
+				{
+					"name": "Get QR",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/payment/qr",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"payment",
+								"qr"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Payment",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJnb3V0LWJhY2tlbmQiLCJzdWIiOiI0IiwiZXhwIjoxNzIwOTMwNTM2LCJpYXQiOjE3MjA5MzAyMzYsInJvbGVzIjoiQ09OU1VNRVIifQ.YPNduxfl1Wg9o1VDjCrs4S70FKAoIUcrt3LKraMkjEsuw1CV1bxKoXlzRArVhaRYt6PMFBuOyr5CUduVhUjvBYLOM8kreBBh-ekpLb2YSN4V4DmFHzxfiAyvCZSY9GC2E6QVLu2io83pElSdkeSRPmTP2-b4hWE5PmdAd_vuB03wxu31PgEc3wpUjA3rQcO4cuDVWvMtFTARYmJ_v3BKilVPuWf5rP8PXvz4sFyhH5kqGiev9GE4E0xmWOnCMOiM1v575AbogPvsURclxYwG_gKUSjXuWna-fuINrRVQnvsmbIZwtnIiGXDMQKnflsTQmDXvYXn4BdwgHlKb4eZ6GWqOV9XNfx0TZBV022DdbXqueT_rnoFmSPMgdSq_C8FucajL6MI7aLEESWUiTwsaxiDA-vvBelH_QEv0NE7kmERY_HCDBnzyhpYAGRzcZec6Zyilj-7vQvnW4N1Qg5pSaXi9auk3bHxmdxh1pwQEhF3VZyEchkXBuTyES-eKXaZs19KUJRGfws-w8QT3Eqf30DNNnVksko_NHTKa3lAvCkTbO_R1wKuPzePRH7y38WiI2lQ87PvV23bWggj86BMfm6ohGptiGJE0jDZQLVnR0GMJ2T20NttAhhFfXp8tO3_V-zOxY4ek9T9FYg0zinKwszX79s5Yq-BakQrXBFM79mM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "idempotent-key",
+								"value": "dbc21258-12b5-43b0-883b-a3e781c5d970",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"bookingId\": 1,\n    \"userId\": 4,\n    \"tourId\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/payment/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"payment",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Test Admin Access",
 			"request": {
 				"auth": {
