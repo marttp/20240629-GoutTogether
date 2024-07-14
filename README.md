@@ -26,4 +26,5 @@ The project is used for TP Coder - Java developer backend bootcamp 2024
 ## Packaging as OCI
 
 ```bash
+./gradlew clean bootBuildImage
 ```
