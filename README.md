@@ -28,3 +28,10 @@ The project is used for TP Coder - Java developer backend bootcamp 2024
 ```bash
 ./gradlew clean bootBuildImage
 ```
+
+![CleanShot 2567-07-14 at 18 37 32@2x](https://github.com/user-attachments/assets/79dd09c0-f42e-4bd2-b7de-35bf86620195)
+
+![CleanShot 2567-07-14 at 18 40 37@2x](https://github.com/user-attachments/assets/7e23adf6-c56d-4409-a65d-cd27b84f3882)
+
+![CleanShot 2567-07-14 at 18 41 23@2x](https://github.com/user-attachments/assets/0485a08a-b02e-4631-9302-fbda5f755172)
+
